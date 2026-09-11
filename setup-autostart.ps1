@@ -55,9 +55,15 @@ Get-CimInstance Win32_Process -Filter "Name='node.exe'" -EA SilentlyContinue |
   ForEach-Object { Stop-Process -Id $_.ProcessId -Force -EA SilentlyContinue }
 Start-Sleep -Seconds 1
 Start-ScheduledTask -TaskName $TaskName
-Start-Sleep -Seconds 4
 
-$l = Get-NetTCPConnection -LocalPort 7777 -State Listen -ErrorAction SilentlyContinue
+# Node + SQLite open can take longer than a naive few seconds; poll instead of
+# guessing, so a healthy start is never reported as a failure.
+$l = $null
+foreach ($i in 1..15) {
+  Start-Sleep -Seconds 1
+  $l = Get-NetTCPConnection -LocalPort 7777 -State Listen -ErrorAction SilentlyContinue
+  if ($l) { break }
+}
 Write-Host ""
 Write-Host "  Registered '$TaskName' to start at logon."
 Write-Host ("  Now: " + $(if ($l) { "running on http://127.0.0.1:7777/ (pid $($l.OwningProcess))" } else { "not yet listening - check Task Scheduler" }))
