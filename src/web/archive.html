@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="cc-token" content="__CC_TOKEN__">
+<title>ARCHIVE · COMMAND CENTER</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='5' fill='none' stroke='%2300e5ff' stroke-width='1.5'/><circle cx='8' cy='8' r='1.5' fill='%2300e5ff'/></svg>">
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<header class="rail">
+  <div class="rail-clock">
+    <div class="clock" style="font-size:20px">ARCHIVE</div>
+    <div class="clock-sub" id="datestamp">&nbsp;</div>
+  </div>
+  <div class="rail-next" style="min-width:auto">
+    <div class="tminus-label">TOTAL TRACKED</div>
+    <div class="tminus is-idle" id="total">—</div>
+    <div class="tminus-sub" id="total-sub">&nbsp;</div>
+  </div>
+  <div class="rail-status">
+    <label class="visually-hidden" for="q">Search</label>
+    <input id="q" type="search" placeholder="SEARCH…" style="background:rgba(8,16,28,.8);border:1px solid var(--line2);color:var(--ink);padding:8px 12px;font-family:var(--mono);font-size:12px;letter-spacing:1px;width:260px">
+  </div>
+  <div class="rail-actions">
+    <button id="back" class="btn btn-primary" type="button">&larr; COCKPIT</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="panel" style="margin-bottom:14px">
+    <div class="panel-head">
+      <h2><span class="bar"></span>FILTER</h2>
+      <span class="panel-meta" id="shown">&nbsp;</span>
+    </div>
+    <div class="panel-body" style="padding:12px 14px;display:flex;gap:8px;flex-wrap:wrap" id="filters"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <h2><span class="bar bar-cyan"></span>RECORDS</h2>
+      <span class="panel-meta" id="sortnote">NEWEST FIRST</span>
+    </div>
+    <div class="panel-body" id="list"><p class="loading">LOADING…</p></div>
+  </div>
+</main>
+
+<div id="drawer" class="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <h2 id="drawer-title">RECORD</h2>
+      <button id="drawer-close" class="btn" type="button">CLOSE</button>
+    </div>
+    <div id="drawer-body" class="drawer-body"></div>
+  </div>
+</div>
+<div id="drawer-scrim" class="scrim" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="/archive.js" type="module"></script>
+</body>
+</html>

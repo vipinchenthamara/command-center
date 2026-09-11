@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="cc-token" content="__CC_TOKEN__">
+<title>COMMAND CENTER</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='5' fill='none' stroke='%2300e5ff' stroke-width='1.5'/><circle cx='8' cy='8' r='1.5' fill='%2300e5ff'/></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<!-- ══ TOP RAIL ══ -->
+<header class="rail">
+  <div class="rail-clock">
+    <div class="clock" id="clock">--:--</div>
+    <div class="clock-sub" id="datestamp">&nbsp;</div>
+  </div>
+
+  <div class="rail-next" id="rail-next">
+    <div class="tminus-label">NEXT CONTACT</div>
+    <div class="tminus" id="tminus">--:--</div>
+    <div class="tminus-sub" id="tminus-sub">&nbsp;</div>
+  </div>
+
+  <div class="rail-status" id="source-rail" aria-label="Source status"></div>
+
+  <div class="rail-actions">
+    <button id="refresh" class="btn btn-primary" type="button">SYNC</button>
+    <button id="tab-archive" class="btn" type="button">ARCHIVE</button>
+  </div>
+</header>
+
+<main id="main">
+  <div id="banner" class="banner" hidden></div>
+
+  <div class="sectors">
+    <!-- ══ SECTOR 01 · YOUR DAY ══ -->
+    <section class="panel panel-day" aria-labelledby="s01">
+      <div class="panel-head">
+        <h2 id="s01"><span class="bar"></span>SECTOR 01 · YOUR DAY</h2>
+        <span class="panel-meta" id="day-meta"></span>
+      </div>
+      <div class="panel-body" id="timeline"><p class="loading">ACQUIRING…</p></div>
+    </section>
+
+    <div class="col-right">
+      <!-- ══ SECTOR 02 · INBOUND ══ -->
+      <section class="panel" aria-labelledby="s02">
+        <div class="panel-head">
+          <h2 id="s02"><span class="bar bar-amber"></span>SECTOR 02 · INBOUND</h2>
+          <span class="panel-meta" id="inbound-meta"></span>
+        </div>
+        <div class="panel-body" id="inbound"></div>
+      </section>
+
+      <!-- ══ SECTOR 03 · TODAY'S THREE ══ -->
+      <section class="panel" aria-labelledby="s03">
+        <div class="panel-head">
+          <h2 id="s03"><span class="bar bar-cyan"></span>SECTOR 03 · COMMITTED</h2>
+          <span class="panel-meta" id="committed-meta"></span>
+        </div>
+        <div class="panel-body" id="committed"></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<form id="capture" class="capture" autocomplete="off">
+  <span class="prompt" aria-hidden="true">&gt;</span>
+  <label class="visually-hidden" for="capture-input">Capture</label>
+  <input id="capture-input" placeholder="LOG ENTRY…   (press C)" required>
+  <button class="btn btn-primary" type="submit">COMMIT</button>
+</form>
+
+<!-- detail drawer -->
+<div id="drawer" class="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <h2 id="drawer-title">RECORD</h2>
+      <button id="drawer-close" class="btn" type="button">CLOSE</button>
+    </div>
+    <div id="drawer-body" class="drawer-body"></div>
+  </div>
+</div>
+<div id="drawer-scrim" class="scrim" hidden></div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script src="/app.js" type="module"></script>
+</body>
+</html>

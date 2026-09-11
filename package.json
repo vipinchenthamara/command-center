@@ -1,0 +1,20 @@
+{
+  "name": "command-center",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A private, local-first work cockpit. Plug in your own tools; your data never leaves the machine.",
+  "scripts": {
+    "start": "node --no-warnings cc.mjs serve",
+    "collect": "node --no-warnings cc.mjs collect",
+    "brief": "node --no-warnings cc.mjs brief",
+    "status": "node --no-warnings cc.mjs status",
+    "setup": "node --no-warnings cc.mjs setup"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.124.0"
+  }
+}

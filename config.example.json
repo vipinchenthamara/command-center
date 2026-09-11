@@ -1,0 +1,73 @@
+{
+  "_comment": "Copy to data/config.json, or just run `node cc.mjs setup`. Secrets are better set as environment variables (ANTHROPIC_API_KEY, GRANOLA_API_KEY, MONDAY_API_TOKEN) — those override this file, so no key needs to live on disk.",
+
+  "timezone": "Asia/Kuala_Lumpur",
+  "briefingTime": "07:30",
+  "workingDays": [1, 2, 3, 4, 5],
+
+  "identity": {
+    "_comment": "How the extractor decides what was addressed to you, and whose meeting commitments are yours.",
+    "email": "you@example.com",
+    "name": "Your Name",
+    "aliases": []
+  },
+
+  "lookbackDays": 3,
+  "overlapHours": 12,
+  "committedCap": 3,
+
+  "outlook": {
+    "_comment": "Local Outlook desktop over COM. No app registration, no tokens. Classic Outlook only — the new Outlook for Windows dropped COM.",
+    "enabled": true,
+    "folders": ["inbox", "sent"],
+    "maxItems": 400,
+    "bodyChars": 2500
+  },
+
+  "calendar": {
+    "_comment": "Same COM surface. Teams meetings appear here, so no browser automation is needed for them.",
+    "daysAhead": 3,
+    "daysBack": 2,
+    "maxItems": 120
+  },
+
+  "granola": {
+    "_comment": "Run `node cc.mjs granola-key grn_...`. includeTranscripts null = auto (on only when AI extraction is enabled).",
+    "enabled": false,
+    "cachePath": "",
+    "maxMeetings": 50,
+    "includeTranscripts": null,
+    "transcriptChars": 12000
+  },
+
+  "monday": {
+    "_comment": "Read-only. Set MONDAY_API_TOKEN in the environment instead of writing it here.",
+    "enabled": false,
+    "apiToken": "",
+    "boardIds": []
+  },
+
+  "teams": {
+    "_comment": "Not implemented. Would need a signed-in Playwright profile plus confirmation that automated browser access is permitted by your organisation.",
+    "enabled": false
+  },
+
+  "ai": {
+    "_comment": "Optional. Without a key, deterministic rule-based extraction runs instead — no network required.",
+    "enabled": false,
+    "apiKey": "",
+    "model": "claude-opus-5",
+    "maxItemsPerRun": 120
+  },
+
+  "vault": {
+    "_comment": "One-way Markdown export for Obsidian. Regenerated every run; safe to delete.",
+    "enabled": true,
+    "path": "./vault"
+  },
+
+  "server": {
+    "host": "127.0.0.1",
+    "port": 7777
+  }
+}
